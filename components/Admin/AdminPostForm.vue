@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { ref } from "@vue/composition-api";
 import AppButton from "~/components/UI/AppButton.vue";
 import AppControlInput from "~/components/UI/AppControlInput.vue";
 export default {
@@ -33,27 +34,36 @@ export default {
       required: false,
     },
   },
-  data() {
-    return {
-      editedPost: this.post
-        ? { ...this.post }
+  setup(props) {
+    const editedPost = ref(
+      props.post
+        ? { ...props.post }
         : {
             author: "",
             title: "",
             thumbnailLink: "",
             content: "",
-          },
-    };
-  },
-  methods: {
-    onSave() {
+          }
+    );
+
+
+    function onSave (){
       // Save the post
       console.log(this.editedPost);
-    },
-    onCancel() {
+    };
+
+    function onCancel() {
       // Navigate Back
       this.$router.push("/admin");
-    },
+    };
+    
+    return {
+    editedPost,
+    onSave,
+    onCancel
+    }
   },
+
+ 
 };
 </script>
