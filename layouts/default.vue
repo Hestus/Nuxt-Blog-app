@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { ref } from "@vue/composition-api";
+
 import TheHeader from "@/components/Navigation/TheHeader.vue";
 import TheSideNav from "@/components/Navigation/TheSidenav.vue";
 
@@ -15,11 +17,12 @@ export default {
     TheHeader,
     TheSideNav,
   },
-  data() {
-    return {
-      displaySideNav: false,
-    };
+  setup(){
+    const displaySideNav = ref(false);
+    
+    return {displaySideNav};
   },
+
 };
 </script>
 

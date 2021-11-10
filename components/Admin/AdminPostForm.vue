@@ -24,6 +24,7 @@
 
 <script>
 import { ref } from "@vue/composition-api";
+import { useRouter } from "@nuxtjs/composition-api";
 import AppButton from "~/components/UI/AppButton.vue";
 import AppControlInput from "~/components/UI/AppControlInput.vue";
 export default {
@@ -46,24 +47,23 @@ export default {
           }
     );
 
-
-    function onSave (){
+    function onSave() {
       // Save the post
-      console.log(this.editedPost);
-    };
+      console.log(editedPost.value);
+    }
 
+    const router = useRouter()
     function onCancel() {
       // Navigate Back
-      this.$router.push("/admin");
-    };
-    
-    return {
-    editedPost,
-    onSave,
-    onCancel
+      router.push("/admin")
+      // this.$router.push("/admin");
     }
-  },
 
- 
+    return {
+      editedPost,
+      onSave,
+      onCancel,
+    };
+  },
 };
 </script>
