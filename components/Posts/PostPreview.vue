@@ -3,8 +3,8 @@
     <article class="post-preview">
       <div
         class="post-thumbnail"
-        :style="{ backgroundImage: 'url(' + thumbnail + ')' }">
-          </div>
+        :style="{ backgroundImage: 'url(' + thumbnail + ')' }"
+      ></div>
       <div class="post-content">
         <h1>{{ title }}</h1>
         <h1>{{ previewText }}</h1>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { computed } from "@nuxtjs/composition-api";
 export default {
   name: "PostPreview",
   props: {
@@ -38,11 +39,16 @@ export default {
       required: true,
     },
   },
-  computed: {
-    postLink(){
-      return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id;
-    }
+  setup(props){
+    const postLink = computed(() => props.isAdmin ? "/admin/" + props.id : "/posts/" + props.id)
+
+    return {postLink};
   },
+  // computed: {
+  //   postLink() {
+  //     return this.isAdmin ? "/admin/" + this.id : "/posts/" + this.id;
+  //   },
+  // },
 };
 </script>
 

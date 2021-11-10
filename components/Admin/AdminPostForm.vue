@@ -15,7 +15,7 @@
       type="button"
       style="margin-left: 10px"
       btn-style="cancel"
-      @click="onCancel"
+      @click="handleRequestToCancel"
     >
       Cancel
     </app-button>
@@ -53,7 +53,7 @@ export default {
     }
 
     const router = useRouter()
-    function onCancel() {
+    function handleRequestToCancel() {
       // Navigate Back
       router.push("/admin")
       // this.$router.push("/admin");
@@ -62,7 +62,7 @@ export default {
     return {
       editedPost,
       onSave,
-      onCancel,
+      handleRequestToCancel,
     };
   },
 };
